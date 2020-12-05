@@ -21,10 +21,10 @@ public class Expenses {
         return expenseEntries.stream()
             .flatMap(
                 value1 -> expenseEntries.stream()
-                    .filter(value2 -> (value1 != value2))
+                    .filter(value2 -> (value1 > value2))
                     .filter(value2 -> (value1 + value2 == 2020))
                     .map(value2 -> List.of(value1, value2))
-            ).findFirst().orElseThrow(() -> new IllegalStateException());
+            ).findAny().orElseThrow(() -> new IllegalStateException());
     }
 
     // https://www.baeldung.com/reading-file-in-java#read-file-with-scanner
