@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Passwords {
 
-    private List<String> passwords = new ArrayList<String>();
+    private List<Password> passwords = new ArrayList<Password>();
 
     public Passwords() throws FileNotFoundException {
         loadPasswords();
@@ -22,7 +22,7 @@ public class Passwords {
         Scanner scanner = new Scanner(new File(passwordsFile));
         scanner.useDelimiter("\n");
         while (scanner.hasNext()) {
-            passwords.add(scanner.next());
+            passwords.add(new Password(scanner.next()));
         }
     }
 
