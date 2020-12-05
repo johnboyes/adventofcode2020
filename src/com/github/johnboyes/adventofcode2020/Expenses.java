@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 
 public class Expenses {
@@ -19,13 +18,13 @@ public class Expenses {
     }
 
     private List<Integer> findTheTwoExpensesWhichSumTo2020() {
-        for (int entry : expenseEntries) {
-            List<Integer> candidates = expenseEntries.stream().filter(e -> (e != entry)).collect(Collectors.toList());
-            for (int candidate : candidates) {
-                if (entry + candidate == 2020) return List.of(entry, candidate);
-            }
-        }
-        throw new IllegalStateException();
+        return expenseEntries.stream()
+            .flatMap(
+                value1 -> expenseEntries.stream()
+                    .filter(value2 -> (value1 != value2))
+                    .filter(value2 -> (value1 + value2 == 2020))
+                    .map(value2 -> List.of(value1, value2))
+            ).findFirst().orElseThrow(() -> new IllegalStateException());
     }
 
     // https://www.baeldung.com/reading-file-in-java#read-file-with-scanner
