@@ -7,12 +7,12 @@ public class Password {
         private int maxOccurrences;
 
         public Password(String rawPasswordData) {
-                // TODO extract the values from the passwords text file properly
-                String[] split = rawPasswordData.split(" ");
-                passwordValue = split[2];
-                requiredChar = split[1].charAt(0);
-                minOccurrences = 1;
-                maxOccurrences = 3;
+                String[] separated = rawPasswordData.split(" ");
+                passwordValue = separated[2];
+                requiredChar = separated[1].charAt(0);
+                String[] occurrencesRange = separated[0].split("-");
+                minOccurrences = Integer.valueOf(occurrencesRange[0]);
+                maxOccurrences = Integer.valueOf(occurrencesRange[1]);
         }
 
         public boolean isValid() {
