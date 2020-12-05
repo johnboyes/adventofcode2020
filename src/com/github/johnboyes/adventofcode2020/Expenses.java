@@ -27,11 +27,6 @@ public class Expenses {
             ).findAny().orElseThrow(() -> new IllegalStateException());
     }
 
-    // loop through each item
-    // loop through all the other items
-    // we still want our original flatmap
-    // the flatmap should now have three items in it, not 2
-
     public int multiplyTheThreeEntriesWhichSumTo2020() {
         return findTheThreeExpensesWhichSumTo2020().stream().reduce(1, (a, b) -> a * b);
     }
@@ -44,7 +39,7 @@ public class Expenses {
                     .filter(value2 -> (value1 > value2))
                     .flatMap(
                         value2 -> expenseEntries.stream()
-                            .filter(value3 -> (value3 != value2))
+                            .filter(value3 -> (value3 > value2))
                             .filter(value3 -> (value1 + value2 + value3 == 2020))
                             .map(value3 -> List.of(value1, value2, value3))
                     )
