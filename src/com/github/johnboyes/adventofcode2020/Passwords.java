@@ -12,8 +12,8 @@ public class Passwords {
         loadPasswords();
     }
 
-	public int totalValid() {
-		return passwords.size();
+	public long totalValid() {
+		return passwords.stream().filter(password -> password.isValid()).count();
     }
     
     // https://www.baeldung.com/reading-file-in-java#read-file-with-scanner
