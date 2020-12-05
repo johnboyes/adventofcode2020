@@ -10,7 +10,7 @@ public class Password {
                 // TODO extract the values from the passwords text file properly
                 String[] split = rawPasswordData.split(" ");
                 passwordValue = split[2];
-                requiredChar = 'c';
+                requiredChar = split[1].charAt(0);
                 minOccurrences = 1;
                 maxOccurrences = 3;
         }
